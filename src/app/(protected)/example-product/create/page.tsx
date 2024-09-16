@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Create } from "@/shadcn/components/crud";
-import { ProductForm } from "../components/form";
+import { ProductForm } from "../../product/container/form-product";
 
 export default function ProfileCreate(): JSX.Element {
   return (

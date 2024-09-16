@@ -18,4 +18,10 @@ export const resources = [
     create: "/profile/create",
     edit: "/profile/edit/:id",
   },
+  {
+    name: "product",
+    list: "/product",
+    create: "/product/create",
+    edit: "/product/edit/:id",
+  },
 ];

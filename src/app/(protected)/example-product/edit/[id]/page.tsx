@@ -2,7 +2,7 @@
 
 import { Edit } from "@src/shadcn/components/crud";
 import React from "react";
-import { ProductForm } from "../../components/form";
+import { ProductForm } from "../../../product/container/form-product";
 
 const ProfileEdit = () => {
   return (

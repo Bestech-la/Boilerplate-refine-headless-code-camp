@@ -3,7 +3,7 @@ import { DatePickerField } from "@src/shadcn/components/form/datepicker";
 import { Form } from "@src/shadcn/components/form";
 import { Input } from "@src/shadcn/elements";
 import { useSelect } from "@refinedev/core";
-import { useProductForm } from "../hook";
+import { useProductForm } from "../../example-product/hook";
 
 export const ProductForm: React.FC<any> = ({ id, action }) => {
   const { form } = useProductForm({ action, id });

@@ -2,6 +2,7 @@ import { type ReactNode, createContext, useContext, useEffect, useReducer, type 
 import { type ProviderProps } from "./interface";
 import { LoadFromStorage } from "./constant";
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export function createContextProvider<T, A>({ reducer, initialState }: ProviderProps<T, A>) {
   const Context = createContext<{ state: T, dispatch: Dispatch<A> } | undefined>(
     undefined,
@@ -11,6 +12,7 @@ export function createContextProvider<T, A>({ reducer, initialState }: ProviderP
     useEffect(() => {
       const storedState = localStorage.getItem(storageKey);
       if (storedState != null && storedState !== "undefined" && storedState !== "{}") {
+        // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
         dispatch({ type: `${LoadFromStorage}`, payload: JSON?.parse(storedState) as T } as A);
       }
     }, []);
