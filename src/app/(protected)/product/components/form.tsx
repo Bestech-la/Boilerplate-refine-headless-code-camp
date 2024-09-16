@@ -7,7 +7,6 @@ import { useProductForm } from "../hook";
 
 export const ProductForm: React.FC<any> = ({ id, action }) => {
   const { form } = useProductForm({ action, id });
-  console.log(form);
   const district = useBrandSelect();
   return (
     <div className="rounded-full w-96 sm:w-[710px]  ">

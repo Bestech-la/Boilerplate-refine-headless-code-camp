@@ -1,17 +1,12 @@
 "use client";
-
 import { Edit } from "@src/shadcn/components/crud";
 import React from "react";
-import { ProfileForm } from "../../components/form";
+import ProfileForm from "../../container/form";
 
-const ProfileEdit = () => {
+function page() {
   return (
-    <div>
-      <Edit>
-        <ProfileForm />
-      </Edit>
-    </div>
+    <Edit><ProfileForm /></Edit>
   );
-};
+}
 
-export default ProfileEdit;
+export default page;

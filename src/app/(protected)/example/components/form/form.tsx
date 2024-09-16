@@ -8,12 +8,11 @@ import { useSelect } from "@refinedev/core";
 export const ProfileForm: React.FC<any> = ({ id, action }) => {
   const { form } = useProfileForm({ action, id });
   const district = useDistrictSelect();
-  console.log("form", form.watch());
   return (
     <div className="rounded-full w-96 sm:w-[710px]  ">
       <Form {...form}>
         <Form.Field {...form} name="image" require={false}>
-          <Form.FileInputImage className="w-64 h-64 rounded-full pt-1" />
+          <Form.FileInputImage className="w-64 h-64 pt-1 rounded-full" />
         </Form.Field>
         <div className="flex flex-wrap gap-2">
           <div className="w-80">

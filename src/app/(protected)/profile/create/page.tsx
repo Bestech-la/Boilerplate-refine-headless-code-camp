@@ -1,16 +1,15 @@
 "use client";
+
 import { Create } from "@src/shadcn/components/crud";
 import React from "react";
-import { ProfileForm } from "../components/form";
+import ProfileForm from "../container/form";
 
-const ProfileCreate = () => {
+function page() {
   return (
-    <div>
-      <Create>
-        <ProfileForm action="create"/>
-      </Create>
-    </div>
+    <Create>
+      <div><ProfileForm/></div>
+    </Create>
   );
-};
+}
 
-export default ProfileCreate;
+export default page;

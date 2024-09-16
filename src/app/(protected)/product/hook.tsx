@@ -50,7 +50,6 @@ export const profileSchema = () => {
       image: validateImageSchema({ required: true, message: "ກະລຸນາເລືອກຮູບພາບ" }),
       dateAdded: validateDateSchema({ message: "ກະລຸນາເລືອກເມືອງ" }),
     }).transform((val) => {
-      console.log(val);
       if (val.image === undefined || typeof val.image === "string") {
         delete val.image;
       }

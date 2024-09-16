@@ -1,90 +1,61 @@
 "use client";
 
+import { useList } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
+import { getActionsColumn } from "@src/common/containers/column";
 import { List } from "@src/shadcn/components/crud";
 import { Table } from "@src/shadcn/components/table";
 import React, { useMemo } from "react";
-import NextImage from "next/image";
-import { CardView } from "@src/shadcn/components/table/card-view";
-import { getActionsColumn } from "@src/common/containers/column";
-import { getActionsRow } from "@src/common/containers/column/actionCard";
-export default function Profile(): JSX.Element {
-  const { table } = useTableProfile();
 
+function page() {
+  const { table } = useTableProfile();
+  console.log("table.options.data", table.options.data);
+  const districtIds = getDistrict(table.options.data);
+  console.log("districtIds", districtIds);
+  const { data: districtData } = useList({
+    resource: "district",
+    filters: [
+      { field: "id", operator: "eq", value: districtIds },
+    ],
+  });
+  console.log("districtData", districtData?.data);
+
+  function getDistrict(val: any) {
+    const districts = val.map((item: any) => item.district);
+    return districts.join(",");
+  }
   return (
     <div>
       <List>
-        <div>Profile</div>
         <Table table={table}>
           <Table.Column header="fullname" id="fullname" accessorKey="fullname" />
           <Table.Column header="nickname" id="nickname" accessorKey="nickname" />
           <Table.Column header="gender" id="gender" accessorKey="gender" />
-          <Table.Column header="age" id="age" accessorKey="age" />
-          <Table.Column header="age" id="age" accessorKey="age" />
-          {ImageColumn()}
+          <Table.Column header="phone" id="phone" accessorKey="phone" />
+          <Table.Column header="District" id="District" accessorKey="District"
+            cell={((props) => {
+              console.log("row district", props.row.original.district);
+              const districtId = props.row.original.district;
+              const findDistrict = districtData?.data.find((item) => item.id === districtId);
+              console.log("findDistrict,", findDistrict);
+              return <>{findDistrict?.districtName}</>;
+            })}
+          />
+          <Table.Column header="province" id="District" accessorKey="District"
+            cell={((props) => {
+              const districtId = props.row.original.district;
+              const findDistrict = districtData?.data.find((item) => item.id === districtId)?.provinceName ?? "";
+              return <>{findDistrict}</>;
+            })}
+          />
           {getActionsColumn({ resource: "profile" })}
         </Table>
-        <br />
-        <CardView table={table} className="w-[340px] h-[350px]">
-          <CardView.Row header="User" id="User" accessorKey="user" isHeader={true} />
-          <CardView.Row header="fullname" id="fullname" accessorKey="fullname"/>
-          <CardView.Row header="nickname" id="nickname" accessorKey="nickname"/>
-          <CardView.Row header="gender" id="gender" accessorKey="gender"/>
-          <CardView.Row header="age" id="age" accessorKey="age"/>
-          {ImageRow()}
-          {getActionsRow({ resource: "profile" })}
-        </CardView>
       </List>
     </div>
   );
 }
 
-export function ImageColumn() {
-  return (
-    <Table.Column
-      header="Image"
-      id="image"
-      accessorKey="image"
-      cell={(props) => {
-        const image = props.row.original.image;
-        return (
-          <div className="my-2">
-            <NextImage
-              src={image}
-              alt="image"
-              width={50}
-              height={50}
-              className="rounded-lg shadow-sm"
-            />
-          </div>
-        );
-      }}
-    />
-  );
-}
-export function ImageRow() {
-  return (
-    <CardView.Row
-      header="Image"
-      id="image"
-      accessorKey="image"
-      cell={(props) => {
-        const image = props.row.original.image;
-        return (
-          <div className="my-2">
-            <NextImage
-              src={image}
-              alt="image"
-              width={100}
-              height={120}
-              className="rounded-lg shadow-sm"
-            />
-          </div>
-        );
-      }}
-    />
-  );
-}
+export default page;
 
 const useTableProfile = () => {
   const columns = useMemo(() => [], []);

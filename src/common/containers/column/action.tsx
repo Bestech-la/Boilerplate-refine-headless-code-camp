@@ -35,7 +35,6 @@ function renderEditAction({ original, resource, hide }: IActionsProps) {
 }
 
 function renderDeleteAction({ original, resource, hide }: IActionsProps) {
-  console.log("original", original);
   if (!hide) {
     return (
       <Table.DeleteAction
