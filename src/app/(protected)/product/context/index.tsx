@@ -3,15 +3,14 @@ import { ProductReducer } from "./reducer";
 import { createContextProvider } from "@src/common/components/localStorageContext/provider";
 import { type LoadFromStorage } from "@src/common/components/localStorageContext/constant";
 
-export const creatingProductState = "creatingProductState";
-export const creatingProductProfileState = "creatingProductProfileState";
+export const createProduct = "createProduct";
 
 export interface ProductState {
   brandId?: number
   productId?: number
 
 }
-type ProductActionType = "setBrandId" | "setProducqtId" | typeof LoadFromStorage | "clearState";
+type ProductActionType = "setBrandId" | "setProductId" | typeof LoadFromStorage | "clearState";
 
 export interface ProductAction {
   type: ProductActionType

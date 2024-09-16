@@ -20,7 +20,7 @@ function Product() {
   ];
   return (
     <Create>
-      <ProductProvider storageKey={createProduct}>
+      <ProductProvider storageKeys={createProduct}>
         <StepperContainer steps={steps} initialStep={0}/>
       </ProductProvider>
     </Create>

@@ -1,14 +1,14 @@
 import { LoadFromStorage } from "@src/common/components/localStorageContext/constant";
-import { type CustomerAction, type ProductState } from ".";
+import { type ProductAction, type ProductState } from ".";
 
 export const ProductReducer = (
   state: ProductState = initialCustomerState,
-  action: CustomerAction,
+  action: ProductAction,
 ): ProductState => {
   switch (action.type) {
     case "setBrandId":
       return { ...state, brandId: action.payload as number };
-    case "setProducqtId":
+    case "setProductId":
       return { ...state, productId: action.payload as number };
     case LoadFromStorage:
       return { ...(action.payload as ProductState) };
